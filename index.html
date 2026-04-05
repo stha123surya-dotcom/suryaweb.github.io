@@ -1,40 +1,105 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pro Area Calculator Tool</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BuildEst Pro | All-In-One Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>📐 Area Calculator</h1>
-      <div class="top-controls">
-        <select id="unit">
-          <option value="m">Meter</option>
-          <option value="ft">Feet</option>
-        </select>
-        
-        
-      </div>
-    </header>
 
-    <div id="triangles"></div>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="brand">
+                <i data-lucide="layers"></i>
+                <span>BuildEst <b>Pro</b></span>
+            </div>
+            <button class="print-btn" onclick="window.print()">
+                <i data-lucide="download"></i> PDF
+            </button>
+        </header>
 
-    <button class="add-btn" onclick="addTriangle()">+ Add Triangle</button>
+        <div class="folder-tab-head">
+            <div class="tab-label active">
+                <i data-lucide="file-text"></i> Project Estimate
+            </div>
+        </div>
 
-    <section class="summary">
-      <h2>Total Area</h2>
-      <h3 id="totalSq">0</h3>
-      <p id="nepaliHill"></p>
-      <p id="nepaliTerai"></p>
-    </section>
-    <button onclick="resetAll()">🔄 Reset</button>
-  </div>
+        <main class="folder-body">
+            
+            <section class="card-section">
+                <h3 class="section-title">Project Specifications</h3>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Total Area (sq. ft)</label>
+                        <input type="number" id="area" value="1000" oninput="calculateAll()">
+                    </div>
+                    <div class="input-group">
+                        <label>Construction Tier</label>
+                        <select id="quality" onchange="calculateAll()">
+                            <option value="1">Economy</option>
+                            <option value="1.2" selected>Standard</option>
+                            <option value="1.5">Premium / Luxury</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
 
-  <script src="script.js"></script>
+            <div class="stats-scroll">
+                <div class="mini-card accent-blue">
+                    <span class="label">Cement</span>
+                    <div class="value" id="valCement">0</div>
+                    <span class="unit">Bags</span>
+                </div>
+                <div class="mini-card accent-orange">
+                    <span class="label">Sand</span>
+                    <div class="value" id="valSand">0</div>
+                    <span class="unit">ft³</span>
+                </div>
+                <div class="mini-card accent-slate">
+                    <span class="label">Aggregate</span>
+                    <div class="value" id="valAggregate">0</div>
+                    <span class="unit">ft³</span>
+                </div>
+                <div class="mini-card accent-red">
+                    <span class="label">Steel</span>
+                    <div class="value" id="valSteel">0</div>
+                    <span class="unit">Kg</span>
+                </div>
+            </div>
+
+            <section class="card-section no-padding">
+                <div class="grand-total-banner">
+                    <label>Grand Estimated Total</label>
+                    <h2 id="grandTotalDisplay">Rs. 0</h2>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th>Item Description</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active"><i data-lucide="home"></i><span>Home</span></div>
+            <div class="nav-item"><i data-lucide="history"></i><span>History</span></div>
+            <div class="nav-item" onclick="alert('Settings feature coming soon!')"><i data-lucide="settings"></i><span>Rates</span></div>
+        </nav>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
